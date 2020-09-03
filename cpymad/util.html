@@ -1,0 +1,359 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>cpymad.util &mdash; cpymad 1.5.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+
+  
+  
+  
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/language_data.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="cpymad.types" href="types.html" />
+    <link rel="prev" title="cpymad.libmadx" href="libmadx.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cpymad
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation/index.html">Installation Instructions</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API Reference</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="madx.html">cpymad.madx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="libmadx.html">cpymad.libmadx</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">cpymad.util</a></li>
+<li class="toctree-l2"><a class="reference internal" href="types.html">cpymad.types</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">cpymad</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API Reference</a> &raquo;</li>
+        
+      <li>cpymad.util</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/cpymad/util.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-cpymad.util">
+<span id="cpymad-util"></span><h1>cpymad.util<a class="headerlink" href="#module-cpymad.util" title="Permalink to this headline">¶</a></h1>
+<p>Utility functions used in other parts of the pymad package.</p>
+<dl class="py class">
+<dt id="cpymad.util.ChangeDirectory">
+<em class="property">class </em><code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">ChangeDirectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">chdir</span></em>, <em class="sig-param"><span class="n">getcwd</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#ChangeDirectory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.ChangeDirectory" title="Permalink to this definition">¶</a></dt>
+<dd><p>Context manager for temporarily changing current working directory.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>path</strong> (<em>str</em>) – new path name</p></li>
+<li><p><strong>_os</strong> – module with <code class="docutils literal notranslate"><span class="pre">getcwd</span></code> and <code class="docutils literal notranslate"><span class="pre">chdir</span></code> functions</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.check_expression">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">check_expression</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#check_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.check_expression" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if the given expression is a valid MAD-X expression that is safe to
+pass to <a class="reference internal" href="madx.html#cpymad.madx.Madx.eval" title="cpymad.madx.Madx.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cpymad.madx.Madx.eval()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>expr</strong> (<em>str</em>) – </p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>True</p>
+</dd>
+<dt class="field-odd">Raises</dt>
+<dd class="field-odd"><p><strong>ValueError</strong> – if the expression is ill-formed</p>
+</dd>
+</dl>
+<p>Note that this function only recognizes a sane subset of the expressions
+accepted by MAD-X and rejects valid but strange ones such as a number
+formatting ‘.’ representing zero.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.format_cmdpar">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_cmdpar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_cmdpar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_cmdpar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a single MAD-X command parameter.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.format_command">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_command</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_command" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a MAD-X command from its name and parameter list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>cmd</strong> – base command (serves as template for parameter types)</p></li>
+<li><p><strong>args</strong> – initial bareword command arguments (including command name!)</p></li>
+<li><p><strong>kwargs</strong> – following named command arguments</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>command string</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>str</p>
+</dd>
+</dl>
+<p>Examples:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">format_command</span><span class="p">(</span><span class="s1">&#39;twiss&#39;</span><span class="p">,</span> <span class="n">sequence</span><span class="o">=</span><span class="s1">&#39;lhc&#39;</span><span class="p">)</span>
+<span class="go">&#39;twiss, sequence=lhc;&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">format_command</span><span class="p">(</span><span class="s1">&#39;option&#39;</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="go">&#39;option, echo;&#39;</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">format_command</span><span class="p">(</span><span class="s1">&#39;constraint&#39;</span><span class="p">,</span> <span class="n">betx</span><span class="o">=</span><span class="n">Constraint</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="mf">3.13</span><span class="p">))</span>
+<span class="go">&#39;constraint, betx&lt;3.13;&#39;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.format_param">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_param</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_param" title="Permalink to this definition">¶</a></dt>
+<dd><p>Format a single MAD-X command parameter.</p>
+<p>This is the old version that does not use type information from MAD-X. It
+is therefore not limited to existing MAD-X commands and attributes, but
+also less reliable for producing valid MAD-X statements.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.is_identifier">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">is_identifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#is_identifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.is_identifier" title="Permalink to this definition">¶</a></dt>
+<dd><p>Check if <code class="docutils literal notranslate"><span class="pre">name</span></code> is a valid identifier in MAD-X.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.mad_quote">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">mad_quote</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#mad_quote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.mad_quote" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add quotes to a string value.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.name_from_internal">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">name_from_internal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_from_internal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.name_from_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert element name from internal representation to user API. Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name_from_internal</span><span class="p">(</span><span class="s2">&quot;foo:1&quot;</span><span class="p">)</span>
+<span class="go">foo</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name_from_internal</span><span class="p">(</span><span class="s2">&quot;foo:2&quot;</span><span class="p">)</span>
+<span class="go">foo[2]</span>
+</pre></div>
+</div>
+<p>Element names are stored with a “:d” suffix by MAD-X internally (data in
+node/sequence structs), but users must use the syntax “elem[d]” to access
+the corresponding elements. This function is used to transform any string
+coming from the user before passing it to MAD-X.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.name_to_internal">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">name_to_internal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_to_internal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.name_to_internal" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert element name from user API to internal representation. Example:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name_to_external</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
+<span class="go">foo:1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">name_to_external</span><span class="p">(</span><span class="s2">&quot;foo[2]&quot;</span><span class="p">)</span>
+<span class="go">foo:2</span>
+</pre></div>
+</div>
+<p>See <a class="reference internal" href="#cpymad.util.name_from_internal" title="cpymad.util.name_from_internal"><code class="xref py py-func docutils literal notranslate"><span class="pre">name_from_internal()</span></code></a> for further information.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt id="cpymad.util.temp_filename">
+<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">temp_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#temp_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.temp_filename" title="Permalink to this definition">¶</a></dt>
+<dd><p>Get filename for use within ‘with’ block and delete file afterwards.</p>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="types.html" class="btn btn-neutral float-right" title="cpymad.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="libmadx.html" class="btn btn-neutral float-left" title="cpymad.libmadx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        
+        &copy; Copyright 2014-2017, T. Gläßle (HIT),2011-2013 Y.I. Levinsen, K. Fuchsberger (CERN)
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
