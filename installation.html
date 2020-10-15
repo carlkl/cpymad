@@ -61,7 +61,7 @@
             
             
               <div class="version">
-                1.6.1
+                1.6
               </div>
             
           
@@ -165,17 +165,18 @@
 </div>
 <p>If this fails, it usually means that we haven’t uploaded wheels for your
 platform or python version. In this case, either <a class="reference external" href="https://github.com/hibtc/cpymad/issues">ping us</a> about adding a
-corresponding wheel, or refer to the <a class="reference internal" href="building.html#building-from-source"><span class="std std-ref">Building from source</span></a> guide.</p>
-<p>The MacOS wheels are experimental and require Apple’s Accelerate framework to
-be installed on the user machine. Please let us know if there are problems
-with these.</p>
-<p>Note that it is recommended to use python 3.6 or later. Support for old python
-versions will be phased out when they are no longer officially supported.</p>
-<p>Check your installation by typing the following:</p>
+corresponding wheel, or refer to <a class="reference internal" href="building.html#building-from-source"><span class="std std-ref">Building from source</span></a>.</p>
+<p>In case of success, check your installation by typing the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import cpymad.libmadx as l; l.start()&quot;</span>
 </pre></div>
 </div>
 <p>The MAD-X banner should appear.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The MacOS wheels are experimental and require Apple’s Accelerate framework
+to be installed on the user machine. Please let us know if there are
+problems with these.</p>
+</div>
 </div>
 
 
