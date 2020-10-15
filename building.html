@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Known issues &mdash; cpymad 1.6.1 documentation</title>
+  <title>Building from source &mdash; cpymad 1.6.1 documentation</title>
   
 
   
@@ -36,7 +36,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="cpymad.types" href="cpymad/types.html" /> 
+    <link rel="next" title="Linux" href="installation/unix.html" />
+    <link rel="prev" title="Installation" href="installation.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,10 +88,16 @@
             
               <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="building.html">Building from source</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Building from source</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="installation/unix.html">Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/windows.html">Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/macos.html">MacOS (experimental)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="installation/troubleshooting.html">Troubleshooting</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpymad/index.html">API Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Known issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known-issues.html">Known issues</a></li>
 </ul>
 
             
@@ -137,13 +144,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Known issues</li>
+      <li>Building from source</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/known-issues.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/building.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,19 +163,22 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="known-issues">
-<h1>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>The MAD-X command output may sometimes appear delayed and in wrong order.
-This is a problem with mixing output from C and Fortran code. On linux it
-can be fixed by setting <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">GFORTRAN_UNBUFFERED_PRECONNECTED=y</span></code> in the
-environment. On windows, this can be tried as well, but is not reliable to
-our knowledge.</p></li>
-<li><p><strong>windows + python 3.3:</strong> there is currently no satisfying way to close file
-handles in the MAD-X process or prevent them from being inherited by
-default.  You have to make sure on your own that you close all file handles
-before creating a new <code class="docutils literal notranslate"><span class="pre">cpymad.madx.Madx</span></code> instance!</p></li>
+  <div class="section" id="building-from-source">
+<span id="id1"></span><h1>Building from source<a class="headerlink" href="#building-from-source" title="Permalink to this headline">¶</a></h1>
+<p>The following sections contain instructions for building MAD-X and cpymad from
+source on various platforms. This can be an intricate procedure that is mostly
+performed by package maintainers or developers who want to change cpymad code.
+Ordinary users usually don’t need to do this and can use the prebuilt wheels
+if available (see <a class="reference internal" href="installation.html#installation"><span class="std std-ref">Installation</span></a>).</p>
+<p class="rubric">Contents</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="installation/unix.html">Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/windows.html">Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/macos.html">MacOS (experimental)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation/troubleshooting.html">Troubleshooting</a></li>
 </ul>
+</div>
 </div>
 
 
@@ -179,8 +189,10 @@ before creating a new <code class="docutils literal notranslate"><span class="pr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="installation/unix.html" class="btn btn-neutral float-right" title="Linux" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="cpymad/types.html" class="btn btn-neutral float-left" title="cpymad.types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="installation.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

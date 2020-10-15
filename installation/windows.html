@@ -36,8 +36,8 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Offline installation" href="offline.html" />
-    <link rel="prev" title="Unix" href="unix.html" /> 
+    <link rel="next" title="MacOS (experimental)" href="macos.html" />
+    <link rel="prev" title="Linux" href="unix.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -87,32 +87,24 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">Installation Instructions</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="unix.html">Unix</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../building.html">Building from source</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unix.html">Linux</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Windows</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#preparations">Preparations</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#static-build-recommended">Static build (recommended)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#targetting-py35-or-above">Targetting py35 or above</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#targetting-py34-or-below">Targetting py34 or below</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#dynamic-build-easier">Dynamic build (easier)</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#mingw">mingw</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#visual-studios">Visual Studios</a></li>
-</ul>
-</li>
-<li class="toctree-l3"><a class="reference internal" href="#installation">Installation</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#for-users">For users</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#for-developers">For developers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setup-environment">Setup environment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-mad-x">Build MAD-X</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#build-cpymad">Build cpymad</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#using-mingw">Using MinGW</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-visual-studio">Using Visual Studio</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="offline.html">Offline installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="macos.html">MacOS (experimental)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="troubleshooting.html">Troubleshooting</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../cpymad/index.html">API Reference</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../known-issues.html">Known issues</a></li>
 </ul>
@@ -161,7 +153,7 @@
     
       <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
         
-          <li><a href="index.html">Installation Instructions</a> &raquo;</li>
+          <li><a href="../building.html">Building from source</a> &raquo;</li>
         
       <li>Windows</li>
     
@@ -184,252 +176,220 @@
             
   <div class="section" id="windows">
 <h1>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h1>
-<p>On windows, I provide <a class="reference external" href="https://pypi.python.org/pypi/cpymad/#downloads">built versions</a> for some python versions. If your
-platform is supported, you can just run:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>pip install cpymad
+<p>cpymad is linked against a library version of MAD-X, which means that in order
+to build cpymad you first have to compile MAD-X from source. The official
+<code class="docutils literal notranslate"><span class="pre">madx</span></code> executable is not sufficient. These steps are described in the
+following subsections:</p>
+<div class="contents local topic" id="contents">
+<ul class="simple">
+<li><p><a class="reference internal" href="#setup-environment" id="id1">Setup environment</a></p></li>
+<li><p><a class="reference internal" href="#build-mad-x" id="id2">Build MAD-X</a></p></li>
+<li><p><a class="reference internal" href="#build-cpymad" id="id3">Build cpymad</a></p>
+<ul>
+<li><p><a class="reference internal" href="#using-mingw" id="id4">Using MinGW</a></p></li>
+<li><p><a class="reference internal" href="#using-visual-studio" id="id5">Using Visual Studio</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="setup-environment">
+<h2><a class="toc-backref" href="#id1">Setup environment</a><a class="headerlink" href="#setup-environment" title="Permalink to this headline">¶</a></h2>
+<p>Setting up a functional build environment requires more effort on windows than
+on other platforms, and there are many pitfalls if not using the right
+compiler toolchain (such as linking against DLLs that are not present on most
+target systems).</p>
+<p>We recommend that you install <strong>conda</strong>. It has proven to be a reliable tool
+for this job. Specifically, I recommend getting <a class="reference external" href="https://conda.io/en/latest/miniconda.html">Miniconda</a>; anaconda should
+work too, but I wouldn’t recommend it because it ships many unnecessary
+components.</p>
+<p>Note that while conda is used to setup a consistent environment for the build
+process, the generated cpymad build will be usable with other python
+distributions as well.</p>
+<p><strong>Install build tools:</strong></p>
+<p>After installing conda, open the conda command prompt.</p>
+<p>We show the commands for the case of working inside a <code class="docutils literal notranslate"><span class="pre">cmd.exe</span></code> terminal
+(batch). If you prefer to work with powershell or bash on msys2, the workflow
+(commands/arguments) will be mostly the same, with the only exception that you
+have to adapt the syntax accordingly in some places.</p>
+<p>Now create a build environment with <a class="reference external" href="http://www.cmake.org/">cmake</a> and setup the MinGW compiler
+toolchain:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>conda create -n buildenv
+conda activate buildenv
+
+conda install -c anaconda cmake
+conda install -c msys2 m2w64-toolchain
 </pre></div>
 </div>
-<p>In case of problems, or if you plan on changing cpymad code, please read the
-rest of this page. You will have to manually compile first MAD-X and then
-cpymad.</p>
-<div class="section" id="preparations">
-<h2>Preparations<a class="headerlink" href="#preparations" title="Permalink to this headline">¶</a></h2>
-<p>In order to build cpymad manually, I recommend using <strong>conda</strong> which makes it
-very easy to install different python versions, quickly setup and tear down
-independent environments and even acquire and build non-python dependencies
-and compilers! <a class="reference external" href="https://conda.io/en/latest/miniconda.html">Miniconda</a> is perfectly suitable for all our intents, but
-anaconda should work fine too.</p>
-<p>After installing conda, open the conda command prompt. In order to build
-MAD-X, first <strong>create a python 3.4</strong> environment with <a class="reference external" href="http://www.cmake.org/">cmake</a> and <a class="reference external" href="https://mingwpy.github.io/">mingwpy</a> –
-even if you plan using cpymad on a higher python version! If you want cpymad
-on py2.7 or 3.3 you can use the target python version for building MAD-X
-instead of 3.4:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda create -n py34 python=3.4 cmake
-conda activate py34
-conda install -c conda-forge mingwpy
-</pre></div>
-</div>
-<p>Now download and extract the latest <a class="reference external" href="https://github.com/MethodicalAcceleratorDesign/MAD-X/releases">MAD-X release</a> and  <a class="reference external" href="https://github.com/hibtc/cpymad/releases">cpymad release</a>,
-Alternatively, use git to retrieve the current development version
-(unstable):</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda install git
+<p><strong>Get the sources:</strong></p>
+<p>Now download and extract the latest <a class="reference external" href="https://github.com/MethodicalAcceleratorDesign/MAD-X/releases">MAD-X release</a> and  <a class="reference external" href="https://github.com/hibtc/cpymad/releases">cpymad release</a>
+side by side.</p>
+<p>Alternatively, use git if you want to build a development version from local
+checkout (unstable):</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>conda install git
 git clone https://github.com/MethodicalAcceleratorDesign/MAD-X
 git clone https://github.com/hibtc/cpymad
 </pre></div>
 </div>
-<p>In the following there are two alternatives how to build MAD-X:</p>
+</div>
+<div class="section" id="build-mad-x">
+<h2><a class="toc-backref" href="#id2">Build MAD-X</a><a class="headerlink" href="#build-mad-x" title="Permalink to this headline">¶</a></h2>
+<p>There are two major alternatives how to build MAD-X:</p>
 <ul class="simple">
 <li><p>I recommend to build MAD-X as a <em>static</em> library as described below. This
 way, you won’t need to carry any <code class="docutils literal notranslate"><span class="pre">.dll</span></code> files around and you won’t run
 into version problems when having a multiple MAD-X library builds around.</p></li>
-<li><p>However, it is somewhat easier to link cpymad <em>dynamically</em> against MAD-X on
-python versions above 3.4, i.e. using a DLL. This comes at the cost of
-having to redistribute the <code class="docutils literal notranslate"><span class="pre">madx.dll</span></code> along. The choice is yours.</p></li>
+<li><p>However, in some cases it may be easier to link cpymad <em>dynamically</em> against
+MAD-X, i.e. using a DLL. This comes at the cost of having to redistribute
+the <code class="docutils literal notranslate"><span class="pre">madx.dll</span></code> along. The choice is yours.</p></li>
 </ul>
-</div>
-<div class="section" id="static-build-recommended">
-<h2>Static build (recommended)<a class="headerlink" href="#static-build-recommended" title="Permalink to this headline">¶</a></h2>
-<p>In the <strong>python 3.4</strong> environment, type:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">mkdir</span> MAD-X\build-static
-<span class="k">cd</span> MAD-X\build-static
+<p>Note that if you’re planning on using MSVC to build the cpymad extension later
+on, you have to build MAD-X as shared library (DLL). With MinGW (recommended),
+both build types are supported.</p>
+<p>In the following, we show the commands for the static build.</p>
+<p>In the build environment, type:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">mkdir</span> MAD-X\build
+<span class="k">cd</span> MAD-X\build
 
-cmake .. <span class="se">^</span>
-<span class="se"> </span>   -G <span class="s2">&quot;MinGW Makefiles&quot;</span> <span class="se">^</span>
+cmake .. -G <span class="s2">&quot;MinGW Makefiles&quot;</span> <span class="se">^</span>
 <span class="se"> </span>   -DBUILD_SHARED_LIBS=OFF <span class="se">^</span>
 <span class="se"> </span>   -DMADX_STATIC=ON <span class="se">^</span>
-<span class="se"> </span>   -DMADX_INSTALL_DOC=OFF <span class="se">^</span>
-<span class="se"> </span>   -DCMAKE_INSTALL_PREFIX=..\install
+<span class="se"> </span>   -DCMAKE_INSTALL_PREFIX=<span class="s2">&quot;../dist&quot;</span>
 
-mingw32-make install
+cmake --build . --target install:
 </pre></div>
 </div>
-<p>The final step will build the library. This may take a few minutes, so go
-and grab a coffee meanwhile.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For shared library builds, instead use <code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=ON</span></code>.</p>
+</div>
 <p>If all went well the last command will have installed binaries and library
-files to the <code class="file docutils literal notranslate"><span class="pre">%MADX%\install</span></code> subfolder.</p>
-<p>Save the <strong>absolute path</strong> to this install directory in the <code class="docutils literal notranslate"><span class="pre">MADXDIR</span></code>
-enviroment variable, this variable will be used later by the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>
-script to locate the MAD-X headers and library, for example:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="s2">&quot;MADXDIR=C:\Users\&lt;....&gt;\MAD-X\install&quot;</span>
+files to the <code class="docutils literal notranslate"><span class="pre">MAD-X\dist</span></code> subfolder.</p>
+<p>Save the path to this install directory in the <code class="docutils literal notranslate"><span class="pre">MADXDIR</span></code> environment
+variable. This variable will be used later by the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> script to
+locate the MAD-X headers and library, for example:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="s2">&quot;MADXDIR=C:\Users\&lt;....&gt;\MAD-X\dist&quot;</span>
 </pre></div>
 </div>
-<div class="section" id="targetting-py35-or-above">
-<h3>Targetting py35 or above<a class="headerlink" href="#targetting-py35-or-above" title="Permalink to this headline">¶</a></h3>
-<p>If you want to use cpymad on a python version later than 3.4, read here,
-otherwise skip to the next section.</p>
-<p>Create an environment with your target python version, e.g.:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda create -n py37 python=3.7 wheel cython
-conda activate py37
+<p>Also, set the following variables according to the flags passed to the cmake
+command above:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">STATIC</span><span class="p">=</span>1    # if -DMADX_STATIC=ON
+<span class="k">set</span> <span class="nv">SHARED</span><span class="p">=</span>1    # if -DBUILD_SHARED_LIBS=ON
 </pre></div>
 </div>
-<p>Now comes the tricky part, you will will have to “cross-compile” (sort of) the
-cython extension on the target platform with GCC from mingwpy in python 3.4.</p>
-<p>First, set a few environment variables with the path of GCC, the python prefix
-of the target python version and certain platform/abi tags. For a 64bit
-python 3.7 this would look as follows:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">py_ver</span><span class="p">=</span>37
+</div>
+<div class="section" id="build-cpymad">
+<h2><a class="toc-backref" href="#id3">Build cpymad</a><a class="headerlink" href="#build-cpymad" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="using-mingw">
+<h3><a class="toc-backref" href="#id4">Using MinGW</a><a class="headerlink" href="#using-mingw" title="Permalink to this headline">¶</a></h3>
+<p>For building cpymad you can simply reuse the build environment with the MinGW
+installation from above, and now also install the targeted python version into
+the build environment, e.g.:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>conda install python=3.7 wheel cython
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you want to build wheels for multiple python versions, just create a
+build environment for each target version, and don’t forget to install the
+same version of the m2w64 compiler toolchain.</p>
+</div>
+<p>Now invoke the following command, which will cythonize the <code class="docutils literal notranslate"><span class="pre">.pyx</span></code> cython
+module to <code class="docutils literal notranslate"><span class="pre">.c</span></code> code as a side effect:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>python setup.py build_py
+</pre></div>
+</div>
+<p>Now comes the tricky part: we will have to manually build the C extension
+using gcc, because setuptools doesn’t know how to properly use our MinGW.</p>
+<p>First set a few environment variables corresponding to the target platform
+and python version:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">py_ver</span><span class="p">=</span>37
 <span class="k">set</span> <span class="nv">dir_tag</span><span class="p">=</span>win-amd64-3.7
 <span class="k">set</span> <span class="nv">file_tag</span><span class="p">=</span>cp37-win_amd64
 </pre></div>
 </div>
-<p>And use this for good as follows:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="k">/f</span> %G <span class="k">in</span> <span class="p">(</span><span class="s1">&#39;python -c &quot;import sys; print(sys.prefix)&quot;&#39;</span><span class="p">)</span> <span class="k">do</span> <span class="p">(</span>
-    <span class="k">set</span> <span class="s2">&quot;gcc=%~fG\..\py34\Scripts\gcc.exe&quot;</span>
-    <span class="k">set</span> <span class="s2">&quot;pythondir=%~fG&quot;</span>
-<span class="p">)</span>
-
-<span class="k">set</span> <span class="nv">tempdir</span><span class="p">=</span>build\temp.<span class="nv">%dir_tag%</span>\Release\src\cpymad
+<p>With these values set, you should be able to copy-paste the following
+commands:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="nv">tempdir</span><span class="p">=</span>build\temp.<span class="nv">%dir_tag%</span>\Release\src\cpymad
 <span class="k">set</span> <span class="nv">libdir</span><span class="p">=</span>build\lib.<span class="nv">%dir_tag%</span>\cpymad
 
 <span class="k">mkdir</span> <span class="nv">%tempdir%</span>
 <span class="k">mkdir</span> <span class="nv">%libdir%</span>
 
-<span class="p">:</span><span class="c1">: This will cythonize `.pyx` to `.c`:</span>
-<span class="k">call</span> python setup.py build_py
-
 <span class="k">call</span> <span class="nv">%gcc%</span> -mdll -O -Wall <span class="se">^</span>
-<span class="se"> </span>   -I<span class="nv">%MADXDIR%</span>\include <span class="se">^</span>
-<span class="se"> </span>   -I<span class="nv">%pythondir%</span>\include <span class="se">^</span>
+<span class="se"> </span>   -I <span class="nv">%MADXDIR%</span>\include <span class="se">^</span>
+<span class="se"> </span>   -I <span class="nv">%pythondir%</span>\include <span class="se">^</span>
 <span class="se"> </span>   -c src/cpymad/libmadx.c <span class="se">^</span>
 <span class="se"> </span>   -o <span class="nv">%tempdir%</span>\libmadx.obj <span class="se">^</span>
 <span class="se"> </span>   -std=gnu99
 
-<span class="p">:</span><span class="c1">: Linking directly against the `pythonXX.dll` is the only way I found to</span>
-<span class="p">:</span><span class="c1">: satisfy the linker in a conda python environment. The conventional</span>
-<span class="p">:</span><span class="c1">: command line `-L%pythondir%\libs -lpython%py_ver%` used to work fine on</span>
-<span class="p">:</span><span class="c1">: WinPython, but fails on conda with large number of complaints about</span>
-<span class="p">:</span><span class="c1">: about undefined references, such as `__imp__Py_NoneStruct`,</span>
 <span class="k">call</span> <span class="nv">%gcc%</span> -shared -s <span class="se">^</span>
 <span class="se"> </span>   <span class="nv">%tempdir%</span>\libmadx.obj <span class="se">^</span>
-<span class="se"> </span>   -L<span class="nv">%MADXDIR%</span>\lib <span class="se">^</span>
+<span class="se"> </span>   -L <span class="nv">%MADXDIR%</span>\lib <span class="se">^</span>
 <span class="se"> </span>   -lmadx -lptc -lgc-lib -lstdc++ -lgfortran <span class="se">^</span>
 <span class="se"> </span>   -lquadmath <span class="nv">%pythondir%</span>\python<span class="nv">%py_ver%</span>.dll -lmsvcr100 <span class="se">^</span>
 <span class="se"> </span>   -o <span class="nv">%libdir%</span>\libmadx.<span class="nv">%file_tag%</span>.pyd
 </pre></div>
 </div>
-<p>Now skip to the final topic: <a class="reference internal" href="#installation">Installation</a>.</p>
-</div>
-<div class="section" id="targetting-py34-or-below">
-<h3>Targetting py34 or below<a class="headerlink" href="#targetting-py34-or-below" title="Permalink to this headline">¶</a></h3>
-<p>This works only if you are planning to <strong>use</strong> cpymad on an old python
-version, on 3.4 or below.</p>
-<p>Make sure that you are in a conda environment with the targeted python version
-and type:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda install wheel cython
-python setup.py build_ext -c mingw32 --static --madxdir=<span class="nv">%MADXDIR%</span>
+<p>If this succeeds, you have most of the work behind you.</p>
+<p>At this point, you may want to check the built <code class="docutils literal notranslate"><span class="pre">.pyd</span></code> file with <a class="reference external" href="https://www.dependencywalker.com/">Dependency
+Walker</a> to verify that it depends only on system dependencies (except for
+<code class="docutils literal notranslate"><span class="pre">pythonXY.dll</span></code>, and in the case of dynamic linking <code class="docutils literal notranslate"><span class="pre">madx.dll</span></code>).</p>
+<p>We now proceed to build a so called <a class="reference external" href="https://wheel.readthedocs.org/en/latest/">wheel</a>. Wheels are zip archives containing
+all the files ready for installation, as well as some metadata such as version
+numbers etc. The wheel can be built as follows:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>python setup.py bdist_wheel
 </pre></div>
 </div>
-<p>If this worked, go to the final topic: <a class="reference internal" href="#installation">Installation</a>.</p>
-</div>
-</div>
-<div class="section" id="dynamic-build-easier">
-<h2>Dynamic build (easier)<a class="headerlink" href="#dynamic-build-easier" title="Permalink to this headline">¶</a></h2>
-<p>The DLL build works very similar, with a few minor differences. Type the
-following:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">mkdir</span> MAD-X\build-shared
-<span class="k">cd</span> MAD-X\build-shared
-
-cmake .. <span class="se">^</span>
-<span class="se"> </span>   -G <span class="s2">&quot;MinGW Makefiles&quot;</span> <span class="se">^</span>
-<span class="se"> </span>   -DBUILD_SHARED_LIBS=ON <span class="se">^</span>
-<span class="se"> </span>   -DMADX_STATIC=OFF <span class="se">^</span>
-<span class="se"> </span>   -DMADX_INSTALL_DOC=OFF <span class="se">^</span>
-<span class="se"> </span>   -DCMAKE_INSTALL_PREFIX=..\install
-
-mingw32-make install
+<p>The <code class="docutils literal notranslate"><span class="pre">.whl</span></code> file is named after the package and its target platform. This
+file can now be used for installation on this or any other machine running the
+same operating system and python version. Install as follows:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>pip install dist\cpymad-1.6.1-cp37-cp37m-win_amd64.whl
 </pre></div>
 </div>
-<p>If all went well the last command will have installed binaries and library
-files to the <code class="file docutils literal notranslate"><span class="pre">%MADX%\install</span></code> subfolder.</p>
-<p>Save the <strong>absolute path</strong> to the install directory in the <code class="docutils literal notranslate"><span class="pre">MADXDIR</span></code>
-enviroment variable, this variable will be used later by the <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>
-script to locate the MAD-X headers and library. For example:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">set</span> <span class="s2">&quot;MADXDIR=C:\Users\&lt;....&gt;\MAD-X\install&quot;</span>
+<p>If you plan on changing cpymad code, do the following instead:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>pip install -e .
 </pre></div>
 </div>
-<p>You are now free to choose between mingw or Microsoft Visual Studios to build
-the cpymad C extension.</p>
-<div class="section" id="mingw">
-<h3>mingw<a class="headerlink" href="#mingw" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="for-py35-or-above">
-<h4>For py35 or above<a class="headerlink" href="#for-py35-or-above" title="Permalink to this headline">¶</a></h4>
-<p>This works according to the static case (<a class="reference internal" href="#targetting-py35-or-above">Targetting py35 or above</a>), but you
-should drop all the library dependencies from the linking step (i.e. the last
-command), leaving only <code class="docutils literal notranslate"><span class="pre">-lmadx</span></code> and the <code class="docutils literal notranslate"><span class="pre">pythonXX.dll</span></code>.</p>
-</div>
-<div class="section" id="for-py34-or-below">
-<h4>For py34 or below<a class="headerlink" href="#for-py34-or-below" title="Permalink to this headline">¶</a></h4>
-<p>Just enter:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda install wheel cython
-python setup.py build_ext -c mingw32 --shared --madxdir=<span class="nv">%MADXDIR%</span>
+<p>Finally, do a quick check that your cpymad installation is working by typing
+the following:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import cpymad.libmadx as l; l.start()&quot;</span>
 </pre></div>
 </div>
-<p>That should be all, proceed to: <a class="reference internal" href="#installation">Installation</a>.</p>
+<p>The MAD-X startup banner should appear. You can also run more tests as
+follows:</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>python test\test_madx.py
+python test\test_util.py
+</pre></div>
 </div>
+<p>Congratulations, you are now free to delete the MAD-X and cpymad folders (but
+keep your wheel!).</p>
 </div>
-<div class="section" id="visual-studios">
-<h3>Visual Studios<a class="headerlink" href="#visual-studios" title="Permalink to this headline">¶</a></h3>
+<div class="section" id="using-visual-studio">
+<h3><a class="toc-backref" href="#id5">Using Visual Studio</a><a class="headerlink" href="#using-visual-studio" title="Permalink to this headline">¶</a></h3>
 <p>Python’s official binaries are all compiled with the Visual C compiler and
-therefore this is the only officially supported method to build C extensions.
-I will list it here for completeness.</p>
+therefore this is the only <em>officially</em> supported method to build python C
+extensions on windows.</p>
+<p>It is possible to build the cpymad C extension with Visual Studio, but there
+is a good reason that the above guide doesn’t use it:</p>
+<p>Visual Studio doesn’t include a Fortran compiler which means that you still
+have to build MAD-X as described. Also, you have to build MAD-X as a shared
+library, because the static library created by MinGW most likely won’t be
+compatible with the Visual C compiler.</p>
 <p>First, look up <a class="reference external" href="https://wiki.python.org/moin/WindowsCompilers#Which_Microsoft_Visual_C.2B-.2B-_compiler_to_use_with_a_specific_Python_version_.3F">the correct Visual Studio version</a> and download and install
 it directly from microsoft. It is possible that older versions are not
 supported anymore.</p>
 <p>After that, activate the Visual Studio tools by calling <code class="docutils literal notranslate"><span class="pre">vcvarsall.bat</span></code>.
 Depending on your Visual Studio version and install path, this might look like
 this:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span><span class="k">call</span> <span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat&quot;</span>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span><span class="k">call</span> <span class="s2">&quot;C:\Program Files (x86)\Microsoft Visual Studio 14.0\VC\vcvarsall.bat&quot;</span>
 </pre></div>
 </div>
-<p>Finally, build cpymad:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>conda create -n py37 python=3.7
+<p>Once you’ve accomplished that, the steps to build cpymad should actually be
+relatively simple (simpler than using MinGW in conda):</p>
+<div class="highlight-batch notranslate"><div class="highlight"><pre><span></span>conda create -n py37 python=3.7
 conda activate py37
 conda install wheel cython
 python setup.py build_ext --shared --madxdir=<span class="nv">%MADXDIR%</span>
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="installation">
-<h2>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h2>
-<p>If you have arrived here, you have most of the work behind you. At this point,
-you should have successfully built the python C extension.</p>
-<div class="section" id="for-users">
-<h3>For users<a class="headerlink" href="#for-users" title="Permalink to this headline">¶</a></h3>
-<p>We now proceed to build a so called <a class="reference external" href="https://wheel.readthedocs.org/en/latest/">wheel</a>. Wheels are zip archives containing
-all the files ready for installation, as well as some metadata such as version
-numbers etc. The wheel can be built as follows:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python setup.py bdist_wheel
-</pre></div>
-</div>
-<p>The <code class="docutils literal notranslate"><span class="pre">.whl</span></code> file is named after the package and its target platform. This
-file can now be used for installation on this or any other machine running the
-same operating system and python version. Install as follows:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>pip install dist\cpymad-0.17.3-cp27-none-win32.whl
-</pre></div>
-</div>
-<p>Finally, do a quick check that your cpymad installation is working by typing
-the following:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import cpymad.libmadx as l; l.start()&quot;</span>
-</pre></div>
-</div>
-<p>The MAD-X startup banner should appear. Congratulations, you are now free to
-delete the MAD-X and cpymad folders (but keep your wheel!).</p>
-</div>
-<div class="section" id="for-developers">
-<h3>For developers<a class="headerlink" href="#for-developers" title="Permalink to this headline">¶</a></h3>
-<p>If you plan on changing cpymad code, do the following instead:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>pip install -e .
-</pre></div>
-</div>
-<p>Quickcheck your installation for a MAD-X startup banner by typing the
-following:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import cpymad.libmadx as l; l.start()&quot;</span>
-</pre></div>
-</div>
-<p>You can also run more tests as follows:</p>
-<div class="highlight-bat notranslate"><div class="highlight"><pre><span></span>python test\test_madx.py
-python test\test_util.py
 </pre></div>
 </div>
 </div>
@@ -444,10 +404,10 @@ python test\test_util.py
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="offline.html" class="btn btn-neutral float-right" title="Offline installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="macos.html" class="btn btn-neutral float-right" title="MacOS (experimental)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="unix.html" class="btn btn-neutral float-left" title="Unix" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="unix.html" class="btn btn-neutral float-left" title="Linux" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
@@ -457,7 +417,7 @@ python test\test_util.py
   <div role="contentinfo">
     <p>
         
-        &copy; Copyright 2014-2017, T. Gläßle (HIT),2011-2013 Y.I. Levinsen, K. Fuchsberger (CERN)
+        &copy; Copyright 2014-2020, T. Gläßle,2014-2019, HIT Betriebs GmbH,2011-2013 Y.I. Levinsen, K. Fuchsberger (CERN)
 
     </p>
   </div>

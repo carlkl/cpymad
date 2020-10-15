@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Known issues &mdash; cpymad 1.6.1 documentation</title>
+  <title>Installation &mdash; cpymad 1.6.1 documentation</title>
   
 
   
@@ -36,7 +36,8 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="cpymad.types" href="cpymad/types.html" /> 
+    <link rel="next" title="Building from source" href="building.html" />
+    <link rel="prev" title="cpymad" href="index.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,11 +87,11 @@
             
             
               <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="building.html">Building from source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="getting-started.html">Getting Started</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cpymad/index.html">API Reference</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Known issues</a></li>
+<li class="toctree-l1"><a class="reference internal" href="known-issues.html">Known issues</a></li>
 </ul>
 
             
@@ -137,13 +138,13 @@
     
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Known issues</li>
+      <li>Installation</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/known-issues.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/installation.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -156,19 +157,25 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="known-issues">
-<h1>Known issues<a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h1>
-<ul class="simple">
-<li><p>The MAD-X command output may sometimes appear delayed and in wrong order.
-This is a problem with mixing output from C and Fortran code. On linux it
-can be fixed by setting <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">GFORTRAN_UNBUFFERED_PRECONNECTED=y</span></code> in the
-environment. On windows, this can be tried as well, but is not reliable to
-our knowledge.</p></li>
-<li><p><strong>windows + python 3.3:</strong> there is currently no satisfying way to close file
-handles in the MAD-X process or prevent them from being inherited by
-default.  You have to make sure on your own that you close all file handles
-before creating a new <code class="docutils literal notranslate"><span class="pre">cpymad.madx.Madx</span></code> instance!</p></li>
-</ul>
+  <div class="section" id="installation">
+<span id="id1"></span><h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>In order to install cpymad, please try:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install cpymad --only-binary cpymad
+</pre></div>
+</div>
+<p>If this fails, it usually means that we haven’t uploaded wheels for your
+platform or python version. In this case, either <a class="reference external" href="https://github.com/hibtc/cpymad/issues">ping us</a> about adding a
+corresponding wheel, or refer to the <a class="reference internal" href="building.html#building-from-source"><span class="std std-ref">Building from source</span></a> guide.</p>
+<p>The MacOS wheels are experimental and require Apple’s Accelerate framework to
+be installed on the user machine. Please let us know if there are problems
+with these.</p>
+<p>Note that it is recommended to use python 3.6 or later. Support for old python
+versions will be phased out when they are no longer officially supported.</p>
+<p>Check your installation by typing the following:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -c <span class="s2">&quot;import cpymad.libmadx as l; l.start()&quot;</span>
+</pre></div>
+</div>
+<p>The MAD-X banner should appear.</p>
 </div>
 
 
@@ -179,8 +186,10 @@ before creating a new <code class="docutils literal notranslate"><span class="pr
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="building.html" class="btn btn-neutral float-right" title="Building from source" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="cpymad/types.html" class="btn btn-neutral float-left" title="cpymad.types" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="index.html" class="btn btn-neutral float-left" title="cpymad" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
