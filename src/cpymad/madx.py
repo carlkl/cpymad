@@ -13,11 +13,7 @@ from itertools import product
 from numbers import Number
 import os
 import subprocess
-
-try:
-    import collections.abc as abc
-except ImportError:                 # py2
-    import collections as abc
+import collections.abc as abc
 
 import numpy as np
 
@@ -192,8 +188,6 @@ class Madx(object):
             return bool(libmadx) and libmadx.is_started()
         except (_rpc.RemoteProcessClosed, _rpc.RemoteProcessCrashed):
             return False
-
-    __nonzero__ = __bool__      # alias for python2 compatibility
 
     def __getattr__(self, name):
         """Resolve missing attributes as commands."""
@@ -621,11 +615,6 @@ class Sequence(object):
         if isinstance(other, Sequence):
             other = other.name
         return self.name == other
-
-    # in py3 __ne__ delegates to __eq__, but we still need this for py2:
-    def __ne__(self, other):
-        """Comparison by sequence name."""
-        return not (self == other)
 
     __repr__ = __str__
 
