@@ -29,7 +29,6 @@
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -186,15 +185,11 @@ instance that can be used to control and access the state of a MAD-X process:</p
 </pre></div>
 </div>
 <p>This spawns a MAD-X process in the background and opens a communication
-channel that will be used to submit commands and fetch data using a simple RPC
-framework.</p>
-<p>Note that running MAD-X in a separate process and using it via the remote
-channel has several benefits over loading it directly into the python process
-space. For one this allows to use any number of MAD-X instances in parallel.
-More than that the MAD-X interpreter can be started and stopped independently
-of the lifetime of the parent process, and perhaps most importantly, the main
-process is shielded from potential crashes occuring within the MAD-X
-interpreter.</p>
+channel to it.</p>
+<p>Running MAD-X in a separate process is necessary to create multiple instances
+with independent interpreter state. This is useful for resetting MAD-X to a
+clean initial state by simply creating a new instance; and is a requirement
+for parallelization (because MAD-X is not thread safe).</p>
 <div class="section" id="basic-mad-x-commands">
 <h2>Basic MAD-X commands<a class="headerlink" href="#basic-mad-x-commands" title="Permalink to this headline">¶</a></h2>
 <p>Now that you started MAD-X, most MAD-X commands can be executed using the
