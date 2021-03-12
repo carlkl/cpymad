@@ -238,10 +238,10 @@ mad_main.c:(.text.startup+0xc): undefined reference to `madx_input&#39;
 /usr/bin/ld: mad_main.c:(.text.startup+0x16): undefined reference to `geterrorflag_&#39;
 </pre></div>
 </div>
-<p>It probably means that you attempted to tried to build MAD-X with
-<code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=ON</span></code> and <code class="docutils literal notranslate"><span class="pre">-DCMAKE_C_FLAGS=&quot;-fvisibility=hidden&quot;</span></code>. If
-that is the case, either build MAD-X with <code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=OFF</span></code>, or
-change <em>hidden</em> to <em>protected</em>, or leave out this option entirely.</p>
+<p>It probably means that you attempted to build MAD-X as <em>shared object</em>
+<code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=ON</span></code> with <code class="docutils literal notranslate"><span class="pre">-DCMAKE_C_FLAGS=&quot;-fvisibility=hidden&quot;</span></code>.
+If that is the case, either build MAD-X with <code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=OFF</span></code>, or
+change <em>hidden</em> to <em>protected</em>, or leave out the visibility option entirely.</p>
 </div>
 </div>
 <div class="section" id="setup-or-compile-time-errors">
@@ -296,20 +296,21 @@ installed. The solution is to install cython and try again:</p>
 <p>Errors that occur after a successful installation when trying to use cpymad.</p>
 <div class="section" id="importerror-undefined-symbol-zgvbn2vv-pow">
 <h3><a class="toc-backref" href="#id9">ImportError: undefined symbol: _ZGVbN2vv_pow</a><a class="headerlink" href="#importerror-undefined-symbol-zgvbn2vv-pow" title="Permalink to this headline">¶</a></h3>
-<p>This means that MAD-X was compiled with vectorization optimizations. There are
-several fixes:</p>
+<p>There are several possible fixes:</p>
 <ul class="simple">
-<li><p>link cpymad against <code class="docutils literal notranslate"><span class="pre">libmvec</span></code> by passing <code class="docutils literal notranslate"><span class="pre">-lm</span></code> while to
-<code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">build_ext</span> <span class="pre">-lm</span></code>. This is the recommended fix when building
-for local use (on your own PC).</p></li>
-<li><p>build MAD-X without vector optimizations by passing
-<code class="docutils literal notranslate"><span class="pre">-DCMAKE_C_FLAGS=&quot;-fno-tree-vectorize&quot;</span>
-<span class="pre">-DCMAKE_CXX_FLAGS=&quot;-fno-tree-vectorize&quot;</span>
-<span class="pre">-DCMAKE_Fortran_FLAGS=&quot;-fno-tree-vectorize&quot;</span></code></p></li>
-<li><p>build MAD-X in a mode lower than release (disables vectorizations by
+<li><p>The simplest fix that works without rebuilding MAD-X is to link cpymad
+against <code class="docutils literal notranslate"><span class="pre">libmvec</span></code>. This can be done by passing <code class="docutils literal notranslate"><span class="pre">-lm</span></code> to the <code class="docutils literal notranslate"><span class="pre">python</span>
+<span class="pre">setup.py</span> <span class="pre">build_ext</span> <span class="pre">-lm</span></code> command. You can also pass it through <code class="docutils literal notranslate"><span class="pre">pip</span></code> as
+follows <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-e</span> <span class="pre">.</span> <span class="pre">--global-option</span> <span class="pre">build_ext</span> <span class="pre">--global-option</span> <span class="pre">-lm</span></code>.
+This fix is the recommended one when building for local use on your own
+machine.</p></li>
+<li><p>Rebuild MAD-X without vectorization optimizations by passing
+<code class="docutils literal notranslate"><span class="pre">-DCMAKE_C_FLAGS=&quot;-fno-tree-vectorize&quot;</span></code>. Same for <code class="docutils literal notranslate"><span class="pre">CMAKE_CXX_FLAGS</span></code>, and
+<code class="docutils literal notranslate"><span class="pre">CMAKE_Fortran_FLAGS</span></code>.</p></li>
+<li><p>Rebuild MAD-X in Debug mode (where these optimizations are disabled by
 default)</p></li>
-<li><p>build MAD-X as shared object: <code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=ON</span>
-<span class="pre">-DCMAKE_C_FLAGS=&quot;-fvisibility=protected&quot;</span></code>, and run <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> with
+<li><p>Rebuild MAD-X as shared object: <code class="docutils literal notranslate"><span class="pre">-DBUILD_SHARED_LIBS=ON</span></code> (also remove
+<code class="docutils literal notranslate"><span class="pre">-fvisibility</span></code> or change to <code class="docutils literal notranslate"><span class="pre">protected</span></code>), and run <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> with
 <code class="docutils literal notranslate"><span class="pre">export</span> <span class="pre">SHARED=1</span></code>.</p></li>
 <li><p>use a manylinux build of cpymad</p></li>
 </ul>
