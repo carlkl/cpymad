@@ -3,9 +3,9 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" />
   
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>cpymad.util &mdash; cpymad 1.6.3 documentation</title>
   
@@ -16,7 +16,10 @@
 
   
   
+
   
+  
+
   
 
   
@@ -50,7 +53,7 @@
           
 
           
-            <a href="../index.html" class="icon icon-home" alt="Documentation Home"> cpymad
+            <a href="../index.html" class="icon icon-home"> cpymad
           
 
           
@@ -137,6 +140,8 @@
 
 
 
+
+
 <div role="navigation" aria-label="breadcrumbs navigation">
 
   <ul class="wy-breadcrumbs">
@@ -150,7 +155,7 @@
     
       <li class="wy-breadcrumbs-aside">
         
-            
+          
             <a href="../_sources/cpymad/util.rst.txt" rel="nofollow"> View page source</a>
           
         
@@ -169,7 +174,7 @@
 <p>Utility functions used in other parts of the pymad package.</p>
 <dl class="py class">
 <dt id="cpymad.util.ChangeDirectory">
-<em class="property">class </em><code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">ChangeDirectory</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">path</span></em>, <em class="sig-param"><span class="n">chdir</span></em>, <em class="sig-param"><span class="n">getcwd</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#ChangeDirectory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.ChangeDirectory" title="Permalink to this definition">¶</a></dt>
+<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">ChangeDirectory</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">chdir</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">getcwd</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#ChangeDirectory"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.ChangeDirectory" title="Permalink to this definition">¶</a></dt>
 <dd><p>Context manager for temporarily changing current working directory.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -183,7 +188,7 @@
 
 <dl class="py function">
 <dt id="cpymad.util.check_expression">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">check_expression</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">expr</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#check_expression"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.check_expression" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">check_expression</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">expr</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#check_expression"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.check_expression" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if the given expression is a valid MAD-X expression that is safe to
 pass to <a class="reference internal" href="madx.html#cpymad.madx.Madx.eval" title="cpymad.madx.Madx.eval"><code class="xref py py-meth docutils literal notranslate"><span class="pre">cpymad.madx.Madx.eval()</span></code></a>.</p>
 <dl class="field-list simple">
@@ -204,13 +209,13 @@ formatting ‘.’ representing zero.</p>
 
 <dl class="py function">
 <dt id="cpymad.util.format_cmdpar">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_cmdpar</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">cmd</span></em>, <em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_cmdpar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_cmdpar" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">format_cmdpar</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">cmd</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_cmdpar"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.format_cmdpar" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format a single MAD-X command parameter.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cpymad.util.format_command">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_command</code><span class="sig-paren">(</span><em class="sig-param"><span class="o">*</span><span class="n">args</span></em>, <em class="sig-param"><span class="o">**</span><span class="n">kwargs</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_command"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_command" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">format_command</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_command"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.format_command" title="Permalink to this definition">¶</a></dt>
 <dd><p>Create a MAD-X command from its name and parameter list.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
@@ -244,7 +249,7 @@ formatting ‘.’ representing zero.</p>
 
 <dl class="py function">
 <dt id="cpymad.util.format_param">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">format_param</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">key</span></em>, <em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_param"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.format_param" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">format_param</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">key</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#format_param"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.format_param" title="Permalink to this definition">¶</a></dt>
 <dd><p>Format a single MAD-X command parameter.</p>
 <p>This is the old version that does not use type information from MAD-X. It
 is therefore not limited to existing MAD-X commands and attributes, but
@@ -253,19 +258,19 @@ also less reliable for producing valid MAD-X statements.</p>
 
 <dl class="py function">
 <dt id="cpymad.util.is_identifier">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">is_identifier</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#is_identifier"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.is_identifier" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">is_identifier</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#is_identifier"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.is_identifier" title="Permalink to this definition">¶</a></dt>
 <dd><p>Check if <code class="docutils literal notranslate"><span class="pre">name</span></code> is a valid identifier in MAD-X.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cpymad.util.mad_quote">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">mad_quote</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">value</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#mad_quote"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.mad_quote" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">mad_quote</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#mad_quote"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.mad_quote" title="Permalink to this definition">¶</a></dt>
 <dd><p>Add quotes to a string value.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt id="cpymad.util.name_from_internal">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">name_from_internal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_from_internal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.name_from_internal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">name_from_internal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_from_internal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.name_from_internal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert element name from internal representation to user API. Example:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name_from_internal</span><span class="p">(</span><span class="s2">&quot;foo:1&quot;</span><span class="p">)</span>
 <span class="go">foo</span>
@@ -281,7 +286,7 @@ coming from the user before passing it to MAD-X.</p>
 
 <dl class="py function">
 <dt id="cpymad.util.name_to_internal">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">name_to_internal</code><span class="sig-paren">(</span><em class="sig-param"><span class="n">element_name</span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_to_internal"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.name_to_internal" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">name_to_internal</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">element_name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#name_to_internal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.name_to_internal" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert element name from user API to internal representation. Example:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">name_to_external</span><span class="p">(</span><span class="s2">&quot;foo&quot;</span><span class="p">)</span>
 <span class="go">foo:1</span>
@@ -294,7 +299,7 @@ coming from the user before passing it to MAD-X.</p>
 
 <dl class="py function">
 <dt id="cpymad.util.temp_filename">
-<code class="sig-prename descclassname">cpymad.util.</code><code class="sig-name descname">temp_filename</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#temp_filename"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#cpymad.util.temp_filename" title="Permalink to this definition">¶</a></dt>
+<code class="sig-prename descclassname"><span class="pre">cpymad.util.</span></code><code class="sig-name descname"><span class="pre">temp_filename</span></code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/cpymad/util.html#temp_filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#cpymad.util.temp_filename" title="Permalink to this definition">¶</a></dt>
 <dd><p>Get filename for use within ‘with’ block and delete file afterwards.</p>
 </dd></dl>
 
@@ -305,37 +310,29 @@ coming from the user before passing it to MAD-X.</p>
            
           </div>
           <footer>
-  
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="types.html" class="btn btn-neutral float-right" title="cpymad.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="libmadx.html" class="btn btn-neutral float-left" title="cpymad.libmadx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
+        <a href="types.html" class="btn btn-neutral float-right" title="cpymad.types" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="libmadx.html" class="btn btn-neutral float-left" title="cpymad.libmadx" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <p>
-        
-        &copy; Copyright 2014-2020, T. Gläßle,2014-2019, HIT Betriebs GmbH,2011-2013 Y.I. Levinsen, K. Fuchsberger (CERN)
+        &#169; Copyright 2014-2020, T. Gläßle,2014-2019, HIT Betriebs GmbH,2011-2013 Y.I. Levinsen, K. Fuchsberger (CERN).
 
     </p>
   </div>
     
     
     
-    Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
     
-    <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a>
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
     
     provided by <a href="https://readthedocs.org">Read the Docs</a>. 
 
 </footer>
-
         </div>
       </div>
 
